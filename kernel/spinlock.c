@@ -29,6 +29,14 @@ acquire(struct spinlock *lk)
   //   a5 = 1
   //   s1 = &lk->locked
   //   amoswap.w.aq a5, a5, (s1)
+
+  /*
+    bool TAS(bool *v){
+      bool tmp = *v;
+      *v = true;
+      return tmp;
+  }
+  */ 
   while(__sync_lock_test_and_set(&lk->locked, 1) != 0)
     ;
 
