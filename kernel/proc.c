@@ -480,8 +480,11 @@ scheduler(void)
 
         // Process is done running for now.
         // It should have changed its p->state before coming back.
+        // scheduler_info("proc_%d give up CPU, now scheduler have it.\n", p->pid);
         c->proc = 0;
+        printf("RUNNABLE pid:%d\n", p->pid);
       }
+      // printf("Not RUNNABLE pid:%d\n", p->pid);
       release(&p->lock);
     }
     if(nproc <= 2) {   // only init and sh exist
@@ -525,6 +528,8 @@ yield(void)
   struct proc *p = myproc();
   acquire(&p->lock);
   p->state = RUNNABLE;
+  printf("yield pid:%d\n", p->pid);
+  // info("yield: set proc_%d state to RUNNABLE and call sched func.\n", myproc()->pid);
   sched();
   release(&p->lock);
 }
