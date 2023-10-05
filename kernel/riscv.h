@@ -352,3 +352,13 @@ sfence_vma()
 
 typedef uint64 pte_t;
 typedef uint64 *pagetable_t; // 512 PTEs
+
+#define PTE_V (1L << 0) // valid
+#define PTE_R (1L << 1)
+#define PTE_W (1L << 2)
+#define PTE_X (1L << 3)
+#define PTE_U (1L << 4) // 1 -> user can access
+#define PTE_G (1L << 5) // global mapping
+#define PTE_A (1L << 6) // accessed
+#define PTE_D (1L << 7) // dirty
+
