@@ -23,15 +23,15 @@
 #include "fs.h"
 #include "buf.h"
 
-// struct {
-//   struct spinlock lock;
-//   struct buf buf[NBUF];
+struct {
+  struct spinlock lock;
+  struct buf buf[NBUF];
 
-//   // Linked list of all buffers, through prev/next.
-//   // Sorted by how recently the buffer was used.
-//   // head.next is most recent, head.prev is least.
-//   struct buf head;
-// } bcache;
+  // Linked list of all buffers, through prev/next.
+  // Sorted by how recently the buffer was used.
+  // head.next is most recent, head.prev is least.
+  struct buf head;
+} bcache;
 
 #define BUCKETSIZE 13
 #define BUFFERSIZE 5
